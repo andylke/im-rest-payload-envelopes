@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.6.6</version>
+    <version>3.1.0</version>
     <relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.github.andylke</groupId>
-	<artifactId>im-rest-payload-envelopes</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <groupId>com.github.andylke</groupId>
+  <artifactId>im-rest-payload-envelopes</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
 
   <name>I'm REST Payload Envelopes</name>
   <description></description>
@@ -35,22 +35,29 @@
   </scm>
 
   <properties>
-    <java.version>11</java.version>
-    <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+    <java.version>17</java.version>
+    <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
   </properties>
 
   <dependencies>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-  	</dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-  	</dependency>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+
+    <!-- apache.commons -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
     </dependency>
 
     <dependency>
@@ -126,6 +133,9 @@
               <rules>
                 <rule>
                   <element>CLASS</element>
+                  <excludes>
+                    <exclude>im.aop.loggers.advice.*.*Advice</exclude>
+                  </excludes>
                   <limits>
                     <limit>
                       <counter>LINE</counter>
@@ -165,7 +175,7 @@
       <plugin>
         <groupId>org.sonatype.plugins</groupId>
         <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.8</version>
+        <version>1.6.13</version>
         <extensions>true</extensions>
         <configuration>
           <serverId>ossrh</serverId>
